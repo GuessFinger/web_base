@@ -27,7 +27,7 @@ html重新学习
     针对table的
     align="center"  规定表格和其他元素的对齐方式
     border="1"  规定表格的单元格是否有宽度
-    cellpadding="像素值" 规定单元格的边缘和内容之间的空白举例
+    cellpadding="像素值" 规定单元格的边缘和内容之间的空白距离
     cellspacing="像素值" 规定单元格之间的空白距离
     
     rowspan="跨行合并单元格的个数"
@@ -73,7 +73,7 @@ html重新学习
         链接内不能再放链接
      如果我们想要把块级元素变成行内元素  display:inline 如果我们想要把行内元素变成快级元素的话 display:block
 
-     经常在项目中 我们需要使用到文字的居中  让文字的行高等于盒子的高度
+     经常在项目中 我们需要使用到文字的居中  让文字的行高等于盒子的高度 line=height
 
      background-position 访问名词   center top 
 
@@ -110,7 +110,58 @@ html重新学习
 
     盒子模型  外边距margin 边框border  内边距padding  内容content
     border : 2px solid red
-        针对表格 如果设置边框的话 两个边框会进行重叠的 可以设置 border-collapse:collapse  合并相邻的边框
+        针对表格 如果设置边框的话 两个边框会进行重叠的 可以设置 border-collapse:collapse  合并相邻的边框 它会影响盒子的实际大小
+
+    padding 内边距 也就是边框和内容之间的距离   如果设置了padding的话  div原来的宽度是200*200 设置了padding 20  盒子会被撑大
+      就会变成 240*240  它会影响盒子的大小 
+      在做导航栏的时候  我们可以不设置width  直接设置padding-left  padding-right  这样的话，会根据内容进行能自动调整
+      如果不指定宽度的话  padding不会撑开盒子
+    margin  指定盒子与盒子之间的距离
+      外边距可以让块级盒子水平居中显式 但是必须满足两个条件   盒子P必须指定width  盒子的 左右 边距都设置为auto
+
+      1. 相邻元素块垂直外边距合并问题
+        a  margin-bottom 20px
+        b  margin-top 10px
+        a 和 b 垂直排列  按照常理说 他们直接的间距应该是30px  实际的应该是取两个值中较大的一个 相邻块元素垂直边距合并 如果想要解决这个问题   直接给一个盒子添加margin就好了
+      2. 嵌套块元素垂直外边距的塌陷问题
+        a   margin-top 50px
+        b   margin-top 80px
+        a 是 b 的父亲  想的是 b 在 a 容器里面  top 80px  实际上  a 直接 margin-top 80px
+        <div style="width: 200px;height: 500px;background: red;">
+          <div style="width: 120px;height: 250px;background: burlywood;"></div>
+        </div>
+        想要解决这个问题  
+        - 给父元素  定义上边框
+        - 给父元素  定义上边距
+        - 可以为父元素添加 overflow:hidden
+
+        行内元素我们尽量只设置 左右内外边距  
+
+        有一些元素自带一些内外边距  可以使用 
+        *{
+            margin:0
+            padding:0
+        }
+
+        ul>li  如果想要去掉li前面的小圆点  
+        li {
+          list-style:none          
+        }
+
+        盒子阴影
+        h-shadow   Horizontal  水平阴影
+        v-shadow   vertical   垂直阴影
+
+        text-shadow  我们这样设置就是文字阴影
+
+       网页布局的本质 用css摆放盒子 把盒子摆放到合适的位置
+
+       浮动特定
+        1. 脱离标准流的控制 移动到指定的位置 
+        2. 浮动的盒子不再保留原来的位置
+        3. 如果多个盒子都设置了浮动 则它们会按照属性值一行内显式并且顶端对齐
+        4. 任何元素都可以进行浮动 不管原先是什么模式的元素 添加浮动后具有行内块元素相似的特性
+
 
 
 ```    
