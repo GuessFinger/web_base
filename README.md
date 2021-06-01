@@ -200,6 +200,91 @@ html重新学习
               如果祖先元素有定位的话 则以近一级的祖先有定位的元素为参考点进行移动
               绝对定义不再占有原先的位置
             fixed
+              它是以浏览器的可视窗口进行移动的
+              不占有原来的位置
+
+            sticky 粘性定位  表现就是  移动到某个位置后 就不进行移动了 固定到某个位置了
+              它也是以浏览器的可视窗口进行定位的
+              它占有原来的位置
+
+
+              让绝对定位的盒子在页面居中
+              div {
+                position:abolute;
+                left:50;
+                margin-left:-100px;
+                width:200px
+              }
+
+              定位的特殊性
+              1. 行内元素添加绝对或者固定定位 可以直接设置高度和宽度
+              2. 块级元素添加绝对或者固定定位 如果不给高度或者宽度 默认是内容的大小
+              3. 浮动元素 只会压住它下面的标准流盒子 但不会压住下面标准流盒子里面的文字(图片)  但是绝对定位会压住下面标准流所有的内容
+
+             display  none  隐藏元素   页面上该元素还是有的 只不过不进行显式  同时它不占有原来的位置
+             visibility visible/hidden  元素隐藏后 但是还继续占有原来的位置
 
 ```    
 
+```css
+  /* 精灵图 就是把我们需要的一些小图片都放到一张大图片中  只需要请求一次  我们移动相关的坐标就可以得到相关的图片 */
+  /* 图标库
+    http://icomoon.io   http://www.iconfont.cn
+    为什么我们下载的图标库 有很多种后缀的文件 
+    .ttf 是windows 和 mac 最常见的字体
+    .woff 就是woff字体  支持一些浏览器
+    .eot  主要就是为了支持ie的字体
+    .svg  是一种基于svg的字体渲染    总体来说就是为了支持各种的浏览器
+   */
+   @font-face{
+      font-family: 'icomoon'
+      src: url('字体的地址')      
+    }
+
+    /*  css 三角形 */
+    div {
+      /* 第一步 我们可以看下效果 */
+      width: 0;
+      height: 0;
+      border-top: 10px solid red;
+      border-bottom: 10px solid yellow;
+      border-left: 10px solid green;
+      border-right: 10px solid blue;
+    }
+    .class2 {
+      /* 这样出来的就是 下三角  */
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top: 10px solid rgb(0, 255, 179);
+    }
+
+    .test {
+      /* 这个放上去就有一个小手 */
+      cursor: point; 
+      /*  把input框外面的边框线给去掉 */
+      outline: none;
+      /* 防止文本域进行拖拽 */
+      resize: none;
+      /* 让前面的盒子和文字垂直居中  它只能针对行内元素 或者行内块元素  默认的话是和文字的基线对齐的 */
+      vertical-align: middle;
+
+      /* 单行文本溢出显示省略号 必须满足三个条件   1. 先强制文本一行内显式  2.超出部分进行隐藏  3.用省略号代替超出的部分
+       */
+       white-space: nowrap; /* 默认normal 自动换行的*/
+       overflow: hidden;
+       text-overflow:ellipsis;
+
+       /* 多行文本溢出显式省略号  这个有比较大的兼容性问题 适用于webkit内核的浏览器  这个号麻烦*/
+       overflow: hidden;
+       text-overflow: ellipsis;
+       display: -webkit-box; /*弹性伸缩盒子模型显式*/
+       -webkit-line-clamp:2; /*限制在一个快级元素显式的文本行数*/
+       -webkit-box-content:vertical; /*设置或者检索伸缩盒对象的子元素的排列方式*/
+
+       /* 巧妙的利用margin */
+       /*  如果一行有4个盒子 我们给每个盒子都设置了一个border  那么在他们的交界处border 就会变成2 这样肯定不合适  可以用margin-left:-1  这样的话  右边的盒子就会把前面的盒子的边压上去  这个在之前的场景中是有遇到过的 还有一个前提就是主要定位的问题*/
+       
+    }
+
+```
