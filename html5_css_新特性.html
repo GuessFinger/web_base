@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header,
+        nav,
+        footer {
+            height: 120px;
+            width: 800px;
+            background-color: pink;
+            border-radius: 15px;
+            margin: 15px auto;
+        }
+
+        article,
+        aside {
+            width: 250px;
+            height: 150px;
+            background-color: chartreuse;
+        }
+
+        section {
+            width: 150px;
+            height: 300px;
+            background-color: cadetblue;
+        }
+
+
+        /* css3给我们新增了选择器 可以更加便捷的选择元素 */
+
+        /* 这样我们就可以把input 拥有value属性的input框选择出来了 */
+        /* 需要注意的是  属性选择器的权重是1 0 */
+        input[value] {
+            color: red;
+        }
+
+        /* 把value值等于number的input框选择出来 */
+        input[value=number] {
+            color: chocolate
+        }
+        /* 把value值是te开头的所有input框选择出来 */
+        input[value^=te] {
+            color: chocolate
+        }
+        /* 这个就是结尾的 */
+        input[value$=te] {
+            color: chocolate
+        }
+        /* 这个就是包含te */
+        input[value*=te] {
+            color: chocolate
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 新特性都是有一定的兼容性问题的  如果不考虑兼容性问题 可以大量的使用这些新特性  -->
+    <header>头部标签</header>
+    <nav>导航栏</nav>
+    <article>hello world article</article>
+    <section>某个区域section </section>
+    <aside>我也是新标签aside</aside>
+    <footer>me too footer</footer>
+    <!-- 还新增了两个媒体标签 可以嵌入音频和视频  这里面有很多的属性  查询下自己看-->
+    <!-- <audio src=""></audio>   
+    <video src=""></video> -->
+
+    <!-- 利用属性选择器可以不用借助类或者id选择器 -->
+    <input type="text" value="请输入">
+    <input type="text">
+    <!-- 利用属性选择器 选择某个属性等于某个值 -->
+    <input type="number" value="请输入">
+    <input type="password">
+    <!-- 利用属性选择器 选择某个属性值开头等于某个值 -->
+    <input type="tel" value="请输入">
+    <input type="password">
+</body>
+
+</html>
