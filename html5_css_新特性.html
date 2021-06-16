@@ -1,69 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        header,
-        nav,
-        footer {
-            height: 120px;
-            width: 800px;
-            background-color: pink;
-            border-radius: 15px;
-            margin: 15px auto;
-        }
+      header,
+      nav,
+      footer {
+        height: 120px;
+        width: 800px;
+        background-color: pink;
+        border-radius: 15px;
+        margin: 15px auto;
+      }
 
-        article,
-        aside {
-            width: 250px;
-            height: 150px;
-            background-color: chartreuse;
-        }
+      article,
+      aside {
+        width: 250px;
+        height: 150px;
+        background-color: chartreuse;
+      }
 
-        section {
-            width: 150px;
-            height: 300px;
-            background-color: cadetblue;
-        }
+      section {
+        width: 150px;
+        height: 300px;
+        background-color: cadetblue;
+      }
+
+      /* css3给我们新增了选择器 可以更加便捷的选择元素 */
+
+      /* 这样我们就可以把input 拥有value属性的input框选择出来了 */
+      /* 需要注意的是  属性选择器的权重是1 0 */
+      input[value] {
+        color: red;
+      }
+
+      /* 把value值等于number的input框选择出来 */
+      input[value="number"] {
+        color: chocolate;
+      }
+
+      /* 把value值是te开头的所有input框选择出来 */
+      input[value^="te"] {
+        color: chocolate;
+      }
+
+      /* 这个就是结尾的 */
+      input[value$="te"] {
+        color: chocolate;
+      }
+
+      /* 这个就是包含te */
+      input[value*="te"] {
+        color: chocolate;
+      }
+
+      /* 结构伪类选择器  我们经常做的就是根据父级选择器里面的子元素*/
+      /*  选择ul 下面第一个是li的标签 */
+      ul li:first-child {
+        background-color: red;
+      }
+
+      ul li:nth-child(2) {
+        background-color: burlywood;
+      }
+
+      /* 我们可以选中多个选中  这里面的字幕只能是n  并且n是从0开始的*/
+      /* 2n就是所有的偶数 even 2n+1 就是所有的奇数 odd*/
+      /* n + 5 从第五个开始应用属性  -n + 5 就是前五个*/
+      ol li:nth-child(n) {
+        background-color: burlywood;
+      }
 
 
-        /* css3给我们新增了选择器 可以更加便捷的选择元素 */
-
-        /* 这样我们就可以把input 拥有value属性的input框选择出来了 */
-        /* 需要注意的是  属性选择器的权重是1 0 */
-        input[value] {
-            color: red;
-        }
-
-        /* 把value值等于number的input框选择出来 */
-        input[value=number] {
-            color: chocolate
-        }
-        /* 把value值是te开头的所有input框选择出来 */
-        input[value^=te] {
-            color: chocolate
-        }
-        /* 这个就是结尾的 */
-        input[value$=te] {
-            color: chocolate
-        }
-        /* 这个就是包含te */
-        input[value*=te] {
-            color: chocolate
-        }
+      ul li:first-of-type{
+          border: 1px solid red;
+      }
+      ul li:last-of-type{
+          border:2px solid yellow;
+      }
+      ul li:nth-of-type(3){
+          border: 5px dashed red;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- 新特性都是有一定的兼容性问题的  如果不考虑兼容性问题 可以大量的使用这些新特性  -->
     <header>头部标签</header>
     <nav>导航栏</nav>
     <article>hello world article</article>
-    <section>某个区域section </section>
+    <section>某个区域section</section>
     <aside>我也是新标签aside</aside>
     <footer>me too footer</footer>
     <!-- 还新增了两个媒体标签 可以嵌入音频和视频  这里面有很多的属性  查询下自己看-->
@@ -71,14 +100,44 @@
     <video src=""></video> -->
 
     <!-- 利用属性选择器可以不用借助类或者id选择器 -->
-    <input type="text" value="请输入">
-    <input type="text">
+    <input type="text" value="请输入" />
+    <input type="text" />
     <!-- 利用属性选择器 选择某个属性等于某个值 -->
-    <input type="number" value="请输入">
-    <input type="password">
+    <input type="number" value="请输入" />
+    <input type="password" />
     <!-- 利用属性选择器 选择某个属性值开头等于某个值 -->
-    <input type="tel" value="请输入">
-    <input type="password">
-</body>
+    <input type="tel" value="请输入" />
+    <input type="password" />
 
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+    </ul>
+
+    <style>
+        /* 
+            在使用nth-child的时候 需要注意 先选择它的子元素 也就是nth-child(1) 对应的是 p标签
+            然后再看nth-child 前面的标签是不是div 发现不是  所有不进行应用
+         */
+        section div:nth-child(1){
+            background: red;
+        }
+        /* 
+            它会把指定元素的类型选择出来 然后再去找第几个元素
+         */
+        section div:nth-of-type(1){
+            background: yellow;
+        }
+    </style>
+    <section>
+        <p>1</p>   
+        <div>2</div>
+        <div>3</div>
+    </section>
+  </body>
 </html>
