@@ -118,7 +118,6 @@
       <li>6</li>
       <li>7</li>
     </ul>
-
     <style>
         /* 
             在使用nth-child的时候 需要注意 先选择它的子元素 也就是nth-child(1) 对应的是 p标签
@@ -139,5 +138,72 @@
         <div>2</div>
         <div>3</div>
     </section>
+
+    <style>
+      /* 
+      伪类选择器 
+      ::before  ::after  在内部元素的前面插入元素    在内部元素的后面插入元素  
+      单冒号 和双冒号 都是可以的
+      它是一个行内元素  里面必须有content属性
+      它是放到 元素里面的前面   after是放到元素里面的后面
+      它是在文档树里面找不到的
+      而且它的全是是1
+
+
+      之前做下拉选项的时候  在父容器里面添加一个 下拉选项 采用的都是 包裹一个子容器 然后在里面添加元素
+      现在直接可用用 ::after 来实现了
+      没有内容的话 直接顶到前面了
+      */
+
+      #wei{
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+      }
+
+      #wei::after{
+        content: '1';
+      }
+    </style>
+
+    <div id="wei"></div>
+
+
+    <style>
+      /*  
+        我们之前的盒子模型  盒子的大小是  width + padding + border   这个也说明  padding 会影响盒子的大小的
+        要控制盒子的大小 我们需要  用真实的width - padding - border  然后这样的去计算
+        现在我们只要 box-sizing : border-box 这样的话 就会不会撑开盒子了
+       */
+       #hz1{
+         width: 100px;
+         height: 100px;
+         background: red;
+         padding: 15px;
+         border: 12px dashed yellow;
+         box-sizing: content-box;
+       }
+       #hz2{
+         width: 100px;
+         height: 100px;
+         background: red;
+         padding: 15px;
+         border: 12px dashed yellow;
+         box-sizing: border-box;
+         /* filter 可以将图片或者颜色发生偏移 blur() 就是将图片进行模糊处理 */
+         filter: blur(5px); 
+       }
+
+    </style>
+    <div id="hz1">
+
+
+    </div>
+
+    <div id="hz2">
+
+    </div>
+
+
   </body>
 </html>

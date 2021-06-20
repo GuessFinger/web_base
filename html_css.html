@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            css3的动画特性
+            transition  要过滤的属性(width,height等等) 花费时间(单位是秒) 运动曲线  何时开始
+            谁要过滤给谁加
+         */
+        .somthing{
+            width: 100px;
+            height: 100px;
+            /* 如果想要给多个属性添加的话  采用的属性放到一个transition 里面 然后不同的属性用 , 隔开就可以了 */
+            /* transition: width .5s,height 2.5s ;             */
+            /* 如果想要多个属性都进行变化的话  可以用all 就可以 */
+            transition: all .5s;
+            background: red;
+        }
+        .somthing:hover{
+            width: 200px;
+            height: 200px;
+        }
+        .bar{
+            width: 200px;
+            height: 20px;
+
+            border: 4px solid rgb(43, 9, 233);
+            border-radius: 10px;
+        }
+
+        .bar1{
+            width: 50%;
+            height: 20px;
+            background: red;
+        }
+        
+        .bar:hover .bar1{
+            width: 100%;
+            height: 20px;
+            background: red;
+            transition: all .5s;
+        }
+    </style>
+    <div class="somthing"> </div>
+    <div class="bar">
+        <div class="bar1">
+
+        </div>
+    </div>
+
+</head>
+<body>
+    
+</body>
+</html>
