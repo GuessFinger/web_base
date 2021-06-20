@@ -1,0 +1,54 @@
+1. form表单  需要有ref  
+2. form表单的 v-model绑定的是一个对象
+3. form表单上有rules里面就是你定义的规则 这个规则是第三方组件的插件
+	name: [
+			{ required: true, message: '请输入活动名称', trigger: 'blur' },
+			{ min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+			],
+			region: [
+				{ required: true, message: '请选择活动区域', trigger: 'change' }
+			],
+4. el-form-item  里面定义prop  <el-form-item label="活动名称" prop="name">  来规定你引用的是哪一个组件
+5. 针对我的业务场景   在父组件中 先请求 查询角色的那个接口 
+	data
+		authorityObj:{
+			组件1：false
+			组件2：false
+			组件3：false
+		},
+		hasAuthorityObj:{}  // 这个对象为了回显里面的数据用的
+	mounted(){
+		//  先请求 查询角色的那个接口  如果成功的话 1. 判断是否运行管理者的权限   如果有的话  直接把authorityObj里面的属性都变成true
+		如果没有话 去查询我们自己的角色表 然后相应的更新authorityObj对象里面的属性
+		如果失败的话  2. 不进行任何操作  控制台打印错误  进行一个弹框提示把？这里需要提问题
+	}
+	在子组件中  直接用authorityObj中的属性定义 v-show 就可以了 （在组件3中，控制添加按钮的显式与否，控制最后一列的编辑 删除按钮） 
+
+	在组件3中，
+			data(){
+				return{
+					ruleForm:{
+						selectedEmployeeId:'',
+						selectedMenu:[]
+					}
+				}
+			}
+	
+			   watch:{
+					hasAuthorityObj:{
+						handle(){
+							// 这里把对象中的属性 处理一下 
+							confMenu 处理成数组
+							id 处理一下 
+							组装一下option  
+							
+						},
+						deep:true
+					}
+			   }
+               mounted中 直接去请求后台，进行列表的数据查询   
+	
+	
+	问一下后台的编辑和新增的逻辑是怎么样的  需不需要传递标志位
+	
+	
